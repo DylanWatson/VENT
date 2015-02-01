@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Topology</title>
+  </head>
+
+  <body>
+    {% if machines %}
+      {% for machine in machines %}
+        <img src="http://upload.wikimedia.org/wikipedia/commons/d/dd/Square_-_black_simple.svg" style="position:absolute; top:{{ top }}px; left:{{ left }}px;">
+      {% endfor %}
+    {% endif %}
+  </body>
+</html>
