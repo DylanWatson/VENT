@@ -7,9 +7,15 @@ VENT will start by building a visualization of your network topology by passivel
 Once the network administrator identifies malicious traffic, they can then choose to act on this traffic by performing network administrative actions such as black-holing, reconnaissance, and port scanning.
 
 To get up and running:
+
 1. Download the project
+
 2. Install Django
+
 3. Run 'python manage.py startserver'
+
 4. Navigate to localhost:8000/topology/
+
 5. ?
+
 6. Profit
