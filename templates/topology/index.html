@@ -1,14 +1,23 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
   <head>
-    <title>Topology</title>
+    <script src="{% static "topology.index.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "main.css" %}"
+
   </head>
 
   <body>
     {% if machines %}
       {% for machine in machines %}
-        <img src="http://upload.wikimedia.org/wikipedia/commons/d/dd/Square_-_black_simple.svg" height="100", width="60">
+        <div id="imageDiv">
+        <img src=" {% static "square.jpg" %}" height="100", width="60">
+        <div id="textDiv">
+          hi
+        </div>
+      </div>
       {% endfor %}
     {% endif %}
   </body>
+
 </html>

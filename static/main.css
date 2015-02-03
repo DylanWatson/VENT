@@ -1,0 +1,25 @@
+#imageDiv{
+  position:absolute;
+  left:0;
+  top:0;
+  width:200px;
+  height:200px;
+  border:1px solid #dfdfdf;
+  padding:2px;
+}
+#imageDiv img{
+  z-index:2;
+  cursor:pointer;
+}
+#imageDiv #textDiv{
+  position:absolute;
+  padding:5px;
+  width:190px;
+  height:190px;
+  overflow:scroll;
+  left:0;
+  top:0;
+  z-index:1;
+  display:none;
+  background:#ccc;
+}
