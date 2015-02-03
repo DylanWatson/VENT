@@ -8,4 +8,5 @@ def index(request):
     context_dict['machines'] = machine_list
     context_dict['top'] = 400
     context_dict['left'] = 400
+    
     return render(request, 'topology/index.html', context_dict)
