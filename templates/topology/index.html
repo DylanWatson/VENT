@@ -9,17 +9,13 @@
   <body>
     {% if machines %}
       {% for machine in machines %}
-        <div id="machine_picture">
-          <img src=" {% static "square.jpg" %}" height="100", width="60">
-        </div>
-
-        <div id="headerDiv">
-             <div id="titleText">{{ machine.name }}</div><a id="myHeader" href="javascript:toggle2('myContent','myHeader');" >hide</a>
+        <!--<div id="machine_picture">
+          <img src=" {% static "square.jpg" %}" height="100", width="60" onclick="javascript:toggle2('myContent','machine_picture');">
         </div>
         <div style="clear:both;"></div>
         <div id="contentDiv">
              <div id="myContent" style="display: block;"> {{ machine.ip }}</div>
-        </div>
+        </div> -->
       {% endfor %}
     {% endif %}
   </body>
