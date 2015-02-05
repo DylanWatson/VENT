@@ -1,14 +1,40 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
   <head>
-    <title>Topology</title>
+    <script src="{% static "topology.index.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "main.css" %}"
   </head>
 
   <body>
     {% if machines %}
       {% for machine in machines %}
-        <img src="http://upload.wikimedia.org/wikipedia/commons/d/dd/Square_-_black_simple.svg" height="100", width="60">
+        <!--<div id="machine_picture">
+          <img src=" {% static "square.jpg" %}" height="100", width="60" onclick="javascript:toggle2('myContent','machine_picture');">
+        </div>
+        <div style="clear:both;"></div>
+        <div id="contentDiv">
+             <div id="myContent" style="display: block;"> {{ machine.ip }}</div>
+        </div> -->
       {% endfor %}
     {% endif %}
   </body>
+
+  <script language="javascript">
+  function toggle2(showHideDiv, switchTextDiv) {
+  var ele = document.getElementById(showHideDiv);
+  var text = document.getElementById(switchTextDiv);
+  if(ele.style.display == "block") {
+        ele.style.display = "none";
+    text.innerHTML = "show";
+    }
+  else {
+    ele.style.display = "block";
+    text.innerHTML = "hide";
+  }
+}
+</script>
+
+
+
 </html>
