@@ -4,20 +4,41 @@
   <head>
     <script src="{% static "topology.index.js" %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static "main.css" %}"
-
   </head>
 
   <body>
     {% if machines %}
       {% for machine in machines %}
-        <div id="imageDiv">
-        <img src=" {% static "square.jpg" %}" height="100", width="60">
-        <div id="textDiv">
-          hi
+        <div id="machine_picture">
+          <img src=" {% static "square.jpg" %}" height="100", width="60">
         </div>
-      </div>
+
+        <div id="headerDiv">
+             <div id="titleText">{{ machine.name }}</div><a id="myHeader" href="javascript:toggle2('myContent','myHeader');" >hide</a>
+        </div>
+        <div style="clear:both;"></div>
+        <div id="contentDiv">
+             <div id="myContent" style="display: block;"> {{ machine.ip }}</div>
+        </div>
       {% endfor %}
     {% endif %}
   </body>
+
+  <script language="javascript">
+  function toggle2(showHideDiv, switchTextDiv) {
+  var ele = document.getElementById(showHideDiv);
+  var text = document.getElementById(switchTextDiv);
+  if(ele.style.display == "block") {
+        ele.style.display = "none";
+    text.innerHTML = "show";
+    }
+  else {
+    ele.style.display = "block";
+    text.innerHTML = "hide";
+  }
+}
+</script>
+
+
 
 </html>

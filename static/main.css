@@ -1,25 +1,32 @@
-#imageDiv{
-  position:absolute;
-  left:0;
-  top:0;
-  width:200px;
-  height:200px;
-  border:1px solid #dfdfdf;
-  padding:2px;
+#headerDiv, #contentDiv {
+float: left;
+width: 510px;
 }
-#imageDiv img{
-  z-index:2;
-  cursor:pointer;
+#titleText {
+float: left;
+font-size: 1.1em;
+font-weight: bold;
+margin: 5px;
 }
-#imageDiv #textDiv{
-  position:absolute;
-  padding:5px;
-  width:190px;
-  height:190px;
-  overflow:scroll;
-  left:0;
-  top:0;
-  z-index:1;
-  display:none;
-  background:#ccc;
+#myHeader {
+font-size: 1.1em;
+font-weight: bold;
+margin: 5px;
+}
+#headerDiv {
+background-color: #0037DB;
+color: #9EB6FF;
+}
+#contentDiv {
+background-color: #FFE694;
+}
+#myContent {
+margin: 5px 10px;
+}
+#headerDiv a {
+float: right;
+margin: 10px 10px 5px 5px;
+}
+#headerDiv a:hover {
+color: #FFFFFF;
 }
