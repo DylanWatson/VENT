@@ -6,5 +6,6 @@ def index(request):
     context_dict = {}
     machine_list = Machine.objects.all()
     context_dict['machines'] = machine_list
+    context_dict['number_of_machines'] = len(machine_list)
 
     return render(request, 'topology/index.html', context_dict)
