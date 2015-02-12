@@ -3,6 +3,7 @@
 <html>
   <head>
     <script src="{% static "topology.index.js" %}"></script>
+    <script src="{% static "jquery-1.11.2.js" %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static "main.css" %}"
   </head>
 
@@ -17,24 +18,54 @@
     var machines = document.getElementById('machines');
     var i=1;
       {% for machine in machines %}
+      //div for machine overall
       var machine = document.createElement("div");
+      var name = "machine"+i;
+      machine.setAttribute("id", "machine"+i);
+
       //image for machine
       var machine_picture = document.createElement("img")
       machine_picture.setAttribute("src", "{% static "square.jpg" %}");
       machine_picture.setAttribute("height", "100");
       machine_picture.setAttribute("width", "60");
-      //text for machine
+      machine_picture.setAttribute("onclick" , "hideDescription(" + i + ")");
+
+      //div for machine info
       var machine_info = document.createElement("div");
-      machine_info.setAttribute("id", "machine"+i);
+      machine_info.setAttribute("id", "machine_info"+i);
       machine_info.innerHTML="{{machine.name}}\n{{machine.ip}}";
-      machines.appendChild(machine_info);
-      machine_info.appendChild(machine_picture);
+
+      //Append machine info and image to a machine
+      machine.appendChild(machine_picture);
+      machine.appendChild(machine_info);
+      //Append machine to machines
+      machines.appendChild(machine);
       i++;
       {%endfor%}
 
   }
 
   </script>
+  <script type="text/javascript">
+  function hideDescription(computerID){
+    var DescriptionElement = "#machine_info" +computerID;
+    $(DescriptionElement).toggleClass("hidden");
+    
+  }
+  </script>
+
+
+<!--
+  <script type="text/javascript">
+  var display = function(el)
+  {
+    document.getElementById(el)["style"]["display"] = "block";
+  };
+
+  hide = function(el)
+  {
+    document.getElementById(el)["style"]["display"] = "none";
+  }; !-->
 
 
 

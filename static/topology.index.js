@@ -1,4 +1,4 @@
-$('#imageDiv img').on('click', function(){
-  $(this).hide();
-  $(this).siblings('#textDiv').show();
+$('#machine1_info').click(function()
+{
+  $('#machine1_info').toggle();
 });
