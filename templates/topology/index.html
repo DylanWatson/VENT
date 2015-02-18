@@ -25,7 +25,25 @@
 
       //image for machine
       var machine_picture = document.createElement("img")
-      machine_picture.setAttribute("src", "{% static "square.jpg" %}");
+      if({{machine.threat_level}} == 0)
+      {
+        machine_picture.setAttribute("src", "{% static "green-square" %}");
+      }
+
+      if({{machine.threat_level}} == 1)
+      {
+        machine_picture.setAttribute("src", "{% static "yellow-square" %}");
+      }
+
+      if({{machine.threat_level}} == 2)
+      {
+        machine_picture.setAttribute("src", "{% static "orange-square" %}");
+      }
+
+      if({{machine.threat_level}} == 3)
+      {
+        machine_picture.setAttribute("src", "{% static "red-square" %}");
+      }
       machine_picture.setAttribute("height", "100");
       machine_picture.setAttribute("width", "60");
       machine_picture.setAttribute("onclick" , "hideDescription(" + i + ")");
@@ -50,7 +68,6 @@
   function hideDescription(computerID){
     var DescriptionElement = "#machine_info" +computerID;
     $(DescriptionElement).toggleClass("hidden");
-    
   }
   </script>
 
