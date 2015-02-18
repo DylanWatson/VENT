@@ -1,0 +1,15 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	notice
+#open	2015-02-17-01-15-01
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	fuid	file_mime_type	file_desc	proto	note	msg	sub	src	dst	p	n	peer_descr	actions	suppress_for	dropped	remote_location.country_code	remote_location.region	remote_location.city	remote_location.latitude	remote_location.longitude
+#types	time	string	addr	port	addr	port	string	string	string	enum	enum	string	string	addr	addr	port	count	string	set[enum]	interval	bool	string	string	string	double	double
+1216698572.456248	Cn8GczHhbkIPiX4nl	192.168.1.64	47810	76.74.252.195	443	-	-	-	tcp	SSL::Invalid_Server_Cert	SSL certificate validation failed with (self signed certificate in certificate chain)	CN=secure.spanningsync.com,OU=Domain Control Validated,O=secure.spanningsync.com	192.168.1.64	76.74.252.195	443	-	bro	Notice::ACTION_LOG	3600.000000	F	-	-	-	-	-
+1216701319.546921	CaLJMXZt9SwhqLHK4	192.168.15.4	32954	69.26.180.17	443	-	-	-	tcp	SSL::Invalid_Server_Cert	SSL certificate validation failed with (unable to get local issuer certificate)	CN=a248.e.akamai.net,O=Akamai Technologies\, Inc.,C=US	192.168.15.4	69.26.180.17	443	-	bro	Notice::ACTION_LOG	3600.000000	F	-	-	-	-	-
+1216704320.839956	Cr1LKg35Gp2nbWMkef	192.168.15.4	34554	140.247.62.34	8000	-	-	-	tcp	SSL::Invalid_Server_Cert	SSL certificate validation failed with (self signed certificate in certificate chain)	emailAddress=palmer@eecs.harvard.edu,CN=mail.eecs.harvard.edu,OU=Division of Engineering and Applied Sciences,O=Harvard University,L=Cambridge,ST=MA,C=US	192.168.15.4	140.247.62.34	8000	-	bro	Notice::ACTION_LOG	3600.000000	F	-	-	-	-	-
+1216705768.709543	C14AmY2yiwmgxcnfY5	192.168.15.4	34924	76.74.252.195	443	-	-	-	tcp	SSL::Invalid_Server_Cert	SSL certificate validation failed with (self signed certificate in certificate chain)	CN=secure.spanningsync.com,OU=Domain Control Validated,O=secure.spanningsync.com	192.168.15.4	76.74.252.195	443	-	bro	Notice::ACTION_LOG	3600.000000	F	-	-	-	-	-
+1216705795.810590	CDLxUC1YLp7jduNVO7	192.168.15.4	34942	72.247.171.161	443	-	-	-	tcp	SSL::Invalid_Server_Cert	SSL certificate validation failed with (unable to get local issuer certificate)	CN=image.pegs.com,ST=Texas,OU=Commerce,O=Pegasus Solutions Inc.,L=Dallas,C=US	192.168.15.4	72.247.171.161	443	-	bro	Notice::ACTION_LOG	3600.000000	F	-	-	-	-	-
+1216706287.706673	CCSJ9d38mlKD34r7e6	192.168.15.4	35594	65.55.13.158	443	-	-	-	tcp	SSL::Invalid_Server_Cert	SSL certificate validation failed with (unable to get local issuer certificate)	CN=www.update.microsoft.com,OU=MSCOM,O=Microsoft,L=Redmond,ST=Washington,C=US	192.168.15.4	65.55.13.158	443	-	bro	Notice::ACTION_LOG	3600.000000	F	-	-	-	-	-
+#close	2015-02-17-01-15-08
