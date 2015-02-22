@@ -4,7 +4,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'vent.settings')
 import django
 django.setup()
 
-from topology.models import Machine
+from topology.models import Machine, Threat
 import subprocess
 import re
 
@@ -19,3 +19,4 @@ for line in lines[2:-1]:
     if current_line[0] == "Nmap" and current_line[1] != "done:":
         ip = current_line[4]
         m = Machine.objects.get_or_create(ip=ip)[0]
+        print str(m) + " Added"
