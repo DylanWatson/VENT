@@ -2,7 +2,7 @@ from django.db import models
 import datetime
 
 class Machine(models.Model):
-    name = models.CharField(max_length=16, unique=True) #SSH-Server
+    name = models.CharField(max_length=16, default="") #SSH-Server
     ip = models.CharField(max_length=15, unique=True) #255.255.255.255
     number_of_threats = models.IntegerField(default=0)
     threat_level = models.IntegerField(default=0) #0-3
