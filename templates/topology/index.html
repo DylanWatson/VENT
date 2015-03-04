@@ -2,9 +2,9 @@
 {% load static %}
 <html>
   <head>
-    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="{% static "main.css" %}"/>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
   </head>
 
   <body>
@@ -48,7 +48,9 @@
       }
       machine_picture.setAttribute("height", "100");
       machine_picture.setAttribute("width", "60");
-      machine_picture.setAttribute("onclick" , "hideDescription(" + i + ")");
+      machine_picture.setAttribute("onmouseover", "hideDescription(" + i + ")");
+      machine_picture.setAttribute("onmouseout", "hideDescription(" + i + ")");
+      //machine_picture.setAttribute("onclick" , "hideDescription(" + i + ")");
 
       //div for machine info
       var machine_info = document.createElement("div");
@@ -66,16 +68,16 @@
         $("#machine"+i).draggable();
         $("#machines"+i).draggable({
           stop: function(event, ui) {
-            var left = ui.position.left;
-            var top = ui.position.top;
+            var left = ui.position.right;
+            var top = ui.position.bottom;
 
             left = left - left % 10;
             top = top - top % 10;
             $("#machines"+i).offset({left:left,top:top});
-    console.log($("#machines"+i).position());
-     }
-    });
-      });
+            console.log($("#machines"+i).position());
+            }
+          });
+        });
 
       i++;
       {%endfor%}
