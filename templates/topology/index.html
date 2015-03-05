@@ -16,12 +16,16 @@
   window.onload=function()
   {
     var machines = document.getElementById('machines');
+    var $body = $('body');
+    var bodyWidth = $body.width();
     var i=1;
       {% for machine in machines %}
       //div for machine overall
       var machine = document.createElement("div");
       var name = "machine"+i;
-      machine.setAttribute("id", "machine"+i);
+      machine.setAttribute("style", "width: 100px");
+      machine.setAttribute("id", name);
+      machine.setAttribute("class", "machineDiv");
 
       //image for machine
       var machine_picture = document.createElement("img")
@@ -29,27 +33,31 @@
       //Check threat level and match it with the right image
       if({{machine.number_of_threats}} == 0)
       {
-        machine_picture.setAttribute("src", "{% static "green-square" %}");
+        //machine_picture.setAttribute("src", "{% static "green-square" %}");
+        machine_picture.setAttribute("src", "{% static "green.png" %}");
       }
 
       if({{machine.number_of_threats}} == 1)
       {
-        machine_picture.setAttribute("src", "{% static "yellow-square" %}");
+        //machine_picture.setAttribute("src", "{% static "yellow-square" %}");
+        machine_picture.setAttribute("src", "{% static "yellow.png" %}");
       }
 
       if({{machine.number_of_threats}} == 2)
       {
-        machine_picture.setAttribute("src", "{% static "orange-square" %}");
+        //machine_picture.setAttribute("src", "{% static "orange-square" %}");
+        machine_picture.setAttribute("src", "{% static "orange.png" %}");
       }
 
       if({{machine.number_of_threats}} == 3)
       {
-        machine_picture.setAttribute("src", "{% static "red-square" %}");
+        //machine_picture.setAttribute("src", "{% static "red-square" %}");
+        machine_picture.setAttribute("src", "{% static "red.png" %}");
       }
       machine_picture.setAttribute("height", "100");
-      machine_picture.setAttribute("width", "60");
-      machine_picture.setAttribute("onmouseover", "hideDescription(" + i + ")");
-      machine_picture.setAttribute("onmouseout", "hideDescription(" + i + ")");
+      machine_picture.setAttribute("width", "100");
+      //machine_picture.setAttribute("onmouseover", "hideDescription(" + i + ")");
+      //machine_picture.setAttribute("onmouseout", "hideDescription(" + i + ")");
       //machine_picture.setAttribute("onclick" , "hideDescription(" + i + ")");
 
       //div for machine info
@@ -62,6 +70,9 @@
       machine.appendChild(machine_info);
       //Append machine to machines
       machines.appendChild(machine);
+      //machine.addClass('machineDiv').appendTo("machines");
+
+      //$'machine'.appendTo('machines');
 
       //make each machine draggable
       $(document).ready(function() {
@@ -81,15 +92,12 @@
 
       i++;
       {%endfor%}
-
-  }
-
+    }
   </script>
   <script type="text/javascript">
   function hideDescription(computerID){
     var DescriptionElement = "#machine_info" +computerID;
     $(DescriptionElement).toggleClass("hidden");
   }
-  </script
-
+  </script>
 </html>

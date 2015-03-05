@@ -33,3 +33,9 @@ color: #FFFFFF;
 .hidden{
   visibility: hidden;
 }
+.machineDiv{
+  width:100px;
+  height:100px;
+  margin: 0 20px 30px 0;
+  float:left;
+}
