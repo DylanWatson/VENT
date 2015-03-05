@@ -56,6 +56,10 @@
       }
       machine_picture.setAttribute("height", "100");
       machine_picture.setAttribute("width", "100");
+
+      /*
+      * Code for hiding info *
+      */
       //machine_picture.setAttribute("onmouseover", "hideDescription(" + i + ")");
       //machine_picture.setAttribute("onmouseout", "hideDescription(" + i + ")");
       //machine_picture.setAttribute("onclick" , "hideDescription(" + i + ")");
@@ -70,26 +74,11 @@
       machine.appendChild(machine_info);
       //Append machine to machines
       machines.appendChild(machine);
-      //machine.addClass('machineDiv').appendTo("machines");
-
-      //$'machine'.appendTo('machines');
 
       //make each machine draggable
       $(document).ready(function() {
         $("#machine"+i).draggable();
-        $("#machines"+i).draggable({
-          stop: function(event, ui) {
-            var left = ui.position.right;
-            var top = ui.position.bottom;
-
-            left = left - left % 10;
-            top = top - top % 10;
-            $("#machines"+i).offset({left:left,top:top});
-            console.log($("#machines"+i).position());
-            }
-          });
         });
-
       i++;
       {%endfor%}
     }
