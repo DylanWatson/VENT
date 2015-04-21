@@ -10,6 +10,16 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
+########################################################
+##################Configurations########################
+########################################################
+
+#Configure VENT to work with your network specific
+IP = "10.104.237.0" #Set your network address here
+SUBNET = "255.255.255.0" #Set your netmask here
+
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')

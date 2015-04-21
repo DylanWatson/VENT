@@ -1,10 +1,12 @@
 from django.db import models
+from django.template.defaultfilters import slugify
 import datetime
 
 class Machine(models.Model):
     ip = models.CharField(max_length=15, unique=True) #255.255.255.255
     name = models.CharField(max_length=16, default="") #SSH-Server
     number_of_threats = models.IntegerField(default=0)
+    #slug = models.SlugField(unique=True)
 
     def __unicode__(self):
         return self.ip

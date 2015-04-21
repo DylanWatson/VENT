@@ -31,6 +31,11 @@
       machine.setAttribute("id", name);
       machine.setAttribute("class", "machineDiv");
 
+
+      //link to info about machine
+      var machine_link = document.createElement("a")
+      machine_link.setAttribute("href", "machine/{{machine.ip}}")
+
       //image for machine
       var machine_picture = document.createElement("img")
 
@@ -38,25 +43,25 @@
       if({{machine.number_of_threats}} == 0)
       {
         //machine_picture.setAttribute("src", "{% static "green-square" %}");
-        machine_picture.setAttribute("src", "{% static "green.png" %}");
+        machine_picture.setAttribute("src", "{% static "green-square" %}");
       }
 
       if({{machine.number_of_threats}} == 1)
       {
         //machine_picture.setAttribute("src", "{% static "yellow-square" %}");
-        machine_picture.setAttribute("src", "{% static "yellow.png" %}");
+        machine_picture.setAttribute("src", "{% static "yellow-square" %}");
       }
 
       if({{machine.number_of_threats}} == 2)
       {
         //machine_picture.setAttribute("src", "{% static "orange-square" %}");
-        machine_picture.setAttribute("src", "{% static "orange.png" %}");
+        machine_picture.setAttribute("src", "{% static "orange-square" %}");
       }
 
       if({{machine.number_of_threats}} == 3)
       {
         //machine_picture.setAttribute("src", "{% static "red-square" %}");
-        machine_picture.setAttribute("src", "{% static "red.png" %}");
+        machine_picture.setAttribute("src", "{% static "red-square" %}");
       }
       machine_picture.setAttribute("height", "100");
       machine_picture.setAttribute("width", "100");
@@ -74,15 +79,16 @@
       machine_info.innerHTML="{{machine.name}}\n{{machine.ip}}";
 
       //Append machine info and image to a machine
-      machine.appendChild(machine_picture);
+      machine_link.appendChild(machine_picture);
+      machine.appendChild(machine_link);
       machine.appendChild(machine_info);
       //Append machine to machines
       machines.appendChild(machine);
 
       //make each machine draggable
-      $(document).ready(function() {
-        $("#machine"+i).draggable();
-        });
+      //$(document).ready(function() {
+        //$("#machine"+i).draggable();
+        //});
       i++;
       {%endfor%}
     }

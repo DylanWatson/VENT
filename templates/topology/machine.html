@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{machine_ip}}</title>
+  </head>
+
+  <body>
+    <table style="width:200px">
+      <tr>
+        <td>{{machine_ip}}</td>
+        <td>{% for threat in threats %}</td>
+        <td>{{ threat.attacker}}</td>
+        <td>{% endfor %}</td>
+  </body>
+</html>
