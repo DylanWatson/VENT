@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <style>
+table, th, td {
+border: 1px solid black;
+border-collapse: collapse;
+padding: 5px;
+text-align: center;
+}
+</style>
     <title>{{machine_ip}}</title>
   </head>
 
   <body>
-    <table style="width:200px">
+    <h1>{{machine.ip}}</h1>
+    <h2>Threat Level: {{machine_ip.number_of_threats}} </h2>
+    <table style="width:100%">
       <tr>
-        <td>{{machine_ip}}</td>
-        <td>{% for threat in threats %}</td>
-        <td>{{ threat.attacker}}</td>
-        <td>{% endfor %}</td>
+        <th>Attacker</th>
+        <th>Type of Attack</th>
+        <th>Date</th>
+      </tr>
+      {% for threat in threats %}
+      <tr>
+        <td>{{ threat.attacker }}</td>
+        <td>{{ threat.name }}</td>
+        <td>{{ threat.date }}</td>
+      </tr>
+    {% endfor %}
+  </table>
   </body>
 </html>

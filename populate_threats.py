@@ -5,7 +5,7 @@ import django
 from vent import settings
 django.setup()
 
-from topology.models import Threat
+from topology.models import Machine, Threat
 import commands
 import time
 
@@ -21,3 +21,10 @@ for line in output:
     formated_date = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(float(date[0])))
     threat = Threat.objects.get_or_create(name=str(type_of_attack), attacker=str(attacker), reciever=str(reciever), date=str(formated_date))[0]
     print str(threat) + " Discovered"
+
+print "Coorelating threats..."
+
+for machine in Machine.objects.all():
+    m = Machine.objects.get(ip=machine)
+    m.number_of_threats = Threat.objects.filter(reciever=machine).count()
+    m.save()
