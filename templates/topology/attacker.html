@@ -21,11 +21,12 @@ text-align: center;
       </tr>
       {% for threat in threats %}
       <tr>
-        <td><a href='../../../{{threat.reciever}}'>{{ threat.reciever }}</a></td>
+        <td><a href='../../machine/{{threat.reciever}}'>{{ threat.reciever }}</a></td>
         <td>{{ threat.name }}</td>
         <td>{{ threat.date }}</td>
       </tr>
     {% endfor %}
   </table>
+  Button to blackhole IP address
   </body>
 </html>
