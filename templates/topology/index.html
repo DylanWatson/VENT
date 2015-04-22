@@ -4,8 +4,6 @@
   <head>
     <!-- Import Files -->
     <link rel="stylesheet" type="text/css" href="{% static "main.css" %}"/>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
   </head>
 
   <body>
@@ -66,13 +64,6 @@
       machine_picture.setAttribute("height", "100");
       machine_picture.setAttribute("width", "100");
 
-      /*
-      * Code for hiding info *
-      */
-      //machine_picture.setAttribute("onmouseover", "hideDescription(" + i + ")");
-      //machine_picture.setAttribute("onmouseout", "hideDescription(" + i + ")");
-      //machine_picture.setAttribute("onclick" , "hideDescription(" + i + ")");
-
       //div for machine info
       var machine_info = document.createElement("div");
       machine_info.setAttribute("id", "machine_info"+i);
@@ -84,11 +75,6 @@
       machine.appendChild(machine_info);
       //Append machine to machines
       machines.appendChild(machine);
-
-      //make each machine draggable
-      //$(document).ready(function() {
-        //$("#machine"+i).draggable();
-        //});
       i++;
       {%endfor%}
     }
