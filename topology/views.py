@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from topology.models import Machine, Threat
+from operator import itemgetter
 
 def index(request):
     context_dict = {}
@@ -30,8 +31,8 @@ def machine(request, ip):
                 if unique_attacker == threat.attacker:
                     count = count + 1
             attacker_and_attacks.append((unique_attacker, count))
-
-        print attacker_and_attacks
+        attacker_and_attacks = sorted(attacker_and_attacks, key=lambda x: x[1], reverse=True)
+        context_dict['top5'] = [x[0] for x in attacker_and_attacks[:5]]
         #Sort by number of threats
         #Save top 5 in context_dict so it can be accessed by machine.html
         #Maybe make cool visualizations? :)

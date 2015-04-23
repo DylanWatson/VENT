@@ -15,6 +15,14 @@ text-align: center;
   <body>
     <h1>{{machine_ip}}</h1>
     <h2>Threat Level: {{machine_ip.number_of_threats}} </h2>
+    <h3>Top 5 Attackers</h3>
+    {% for machine in top5 %}
+    {{ machine }}
+  </br>
+    {% endfor %}
+  </br>
+
+<h3>Attacks</h3>
     <table style="width:100%">
       <tr>
         <th>Attacker</th>
