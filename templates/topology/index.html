@@ -8,9 +8,9 @@
 
   <body>
     <!-- Div that holds all machines -->
+    Button to rescan for network topology
     <div id="machines" class="out">
     </div>
-    Button to rescan for network topology
   </body>
 
 
@@ -18,9 +18,8 @@
   <script>
   window.onload=function()
   {
+
     var machines = document.getElementById('machines');
-    var $body = $('body');
-    var bodyWidth = $body.width();
     var i=1;
       {% for machine in machines %}
       //div for machine overall
@@ -29,8 +28,6 @@
       machine.setAttribute("style", "width: 100px");
       machine.setAttribute("id", name);
       machine.setAttribute("class", "machineDiv");
-
-
       //link to info about machine
       var machine_link = document.createElement("a")
       machine_link.setAttribute("href", "machine/{{machine.ip}}")
@@ -59,9 +56,9 @@
 
       if({{machine.number_of_threats}} == 3)
       {
-        //machine_picture.setAttribute("src", "{% static "red-square" %}");
         machine_picture.setAttribute("src", "{% static "red-square" %}");
       }
+
       machine_picture.setAttribute("height", "100");
       machine_picture.setAttribute("width", "100");
 
@@ -72,6 +69,7 @@
 
       //Append machine info and image to a machine
       machine_link.appendChild(machine_picture);
+
       machine.appendChild(machine_link);
       machine.appendChild(machine_info);
       //Append machine to machines
@@ -79,13 +77,5 @@
       i++;
       {%endfor%}
     }
-  </script>
-
-  <!-- Currently does not work -->
-  <script type="text/javascript">
-  function hideDescription(computerID){
-    var DescriptionElement = "#machine_info" +computerID;
-    $(DescriptionElement).toggleClass("hidden");
-  }
   </script>
 </html>

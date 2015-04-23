@@ -17,6 +17,8 @@ def machine(request, ip):
 
         threats = Threat.objects.filter(reciever=ip)
         context_dict['threats'] = threats
+
+        #logic for obtaining the top 5 attacker
         attackers = []
         for threat in threats:
             attackers.append(str(threat.attacker))
@@ -33,6 +35,7 @@ def machine(request, ip):
         #Sort by number of threats
         #Save top 5 in context_dict so it can be accessed by machine.html
         #Maybe make cool visualizations? :)
+        #Visualization of types of attacks :D
 
 
 
