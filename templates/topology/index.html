@@ -55,7 +55,7 @@
         machine_picture.setAttribute("src", "{% static "orange-square" %}");
       }
 
-      if({{machine.number_of_threats}} < 20 && {{machine.number_of_threats}} >= 15)
+      if({{machine.number_of_threats}} >= 15)
       {
         machine_picture.setAttribute("src", "{% static "red-square" %}");
       }
