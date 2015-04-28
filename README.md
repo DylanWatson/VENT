@@ -25,3 +25,4 @@ To get up and running:
 7. Add cool visualizations to machine, attacker, and index pages to represent attacks
 8. Overall prettier UI
 9. Make machines draggable with click of button so you can make meaningful placements
+10. Set configurations to define threat levels instead of hardcoded values.

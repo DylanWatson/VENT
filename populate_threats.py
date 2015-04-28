@@ -19,8 +19,8 @@ for line in output:
     attacker = attack[2]
     type_of_attack = attack[3]
     formated_date = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(float(date[0])))
-    threat = Threat.objects.get_or_create(name=str(type_of_attack), attacker=str(attacker), reciever=str(reciever), date=str(formated_date))[0]
-    print str(threat) + " Discovered"
+    threat = Threat.objects.get_or_create(name=str(type_of_attack), attacker=str(attacker), reciever=Machine.objects.get(ip=reciever), date=str(formated_date))
+    print str(threat[0]) + " attack identified.."
 
 print "Coorelating threats..."
 
