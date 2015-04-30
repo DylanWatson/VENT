@@ -54,3 +54,15 @@ if len(sys.argv) == 2:
         for address in addresses:
             m = Machine.objects.get_or_create(ip=address)
             print str(m[0]) + " Discovered"
+
+
+
+        #High Level Threat
+        ip = "192.168.12.149"
+        m = Machine.objects.get_or_create(ip=ip)
+        print str(m[0]) + " Discovered"
+
+        #Very High Level Threat
+        ip = "192.168.37.200"
+        m = Machine.objects.get_or_create(ip=ip)
+        print str(m[0]) + " Discovered"

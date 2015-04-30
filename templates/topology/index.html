@@ -7,7 +7,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
   </head>
 
-  <body>
+  <body background="http://shopsocially.com/wp-content/uploads/2014/10/Grey-Background-48.jpg">
     <!-- Div that holds all machines -->
     Button to rescan for network topology
     <div id="machines" class="out">
@@ -40,24 +40,24 @@
       if({{machine.number_of_threats}} < 5)
       {
         //machine_picture.setAttribute("src", "{% static "green-square" %}");
-        machine_picture.setAttribute("src", "{% static "green-square" %}");
+        machine_picture.setAttribute("src", "{% static "green-square.png" %}");
       }
 
       else if({{machine.number_of_threats}} < 10 && {{machine.number_of_threats}} >= 5)
       {
         //machine_picture.setAttribute("src", "{% static "yellow-square" %}");
-        machine_picture.setAttribute("src", "{% static "yellow-square" %}");
+        machine_picture.setAttribute("src", "{% static "yellow-square.png" %}");
       }
 
       if({{machine.number_of_threats}} < 15 && {{machine.number_of_threats}} >= 10)
       {
         //machine_picture.setAttribute("src", "{% static "orange-square" %}");
-        machine_picture.setAttribute("src", "{% static "orange-square" %}");
+        machine_picture.setAttribute("src", "{% static "orange-square.png" %}");
       }
 
       if({{machine.number_of_threats}} >= 15)
       {
-        machine_picture.setAttribute("src", "{% static "red-square" %}");
+        machine_picture.setAttribute("src", "{% static "red-square.png" %}");
       }
 
       machine_picture.setAttribute("height", "100");
