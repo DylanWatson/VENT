@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <style>
-table, th, td {
-border: 1px solid black;
-border-collapse: collapse;
-padding: 5px;
-text-align: center;
-}
-</style>
+    {% load staticfiles %}
+    <!-- DataTables CSS -->
+  <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.7/css/jquery.dataTables.css">
+
+  <!-- jQuery -->
+  <script type="text/javascript" charset="utf8" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+  <!-- DataTables -->
+  <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.7/js/jquery.dataTables.js"></script>
+
+  <script src="{% static "js/rango-jquery.js" %}"></script>
     <title>{{machine_ip}}</title>
   </head>
 
@@ -23,20 +26,29 @@ text-align: center;
   </br>
 
 <h3>Attacks</h3>
-    <table style="width:100%">
-      <tr>
-        <th>Attacker</th>
-        <th>Type of Attack</th>
-        <th>Date</th>
-      </tr>
-      {% for threat in threats %}
-      <tr>
-        <td><a href='../../attacker/{{threat.attacker}}'>{{ threat.attacker }}</a></td>
-        <td>{{ threat.name }}</td>
-        <td>{{ threat.date }}</td>
-      </tr>
-    {% endfor %}
-  </table>
   Button to add name to machine
+  <table id="myTable" class="display">
+    <thead>
+        <tr>
+            <th>Attacker</th>
+            <th>Type of Attack</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+      {% for threat in threats%}
+        <tr>
+            <td>{{threat.attacker}}</td>
+            <td>{{threat.name}}</td>
+            <td>{{threat.date}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
   </body>
+  <script>
+  $(document).ready(function(){
+      $('#myTable').DataTable();
+  });
+</script>
 </html>
