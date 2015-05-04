@@ -55,3 +55,6 @@ def attacker(request, ip):
     context_dict['attacker'] = ip
     context_dict['threats'] = threats
     return render(request, "topology/attacker.html", context_dict)
+
+def test(request):
+    return render(request, 'topology/test.html')
