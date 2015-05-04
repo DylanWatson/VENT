@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from topology.models import Machine, Threat, Blackhole
+from topology.models import Machine, Threat,
 from operator import itemgetter
 import blackhole
 

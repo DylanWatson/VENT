@@ -24,5 +24,5 @@ class Blackhole(models.Model):
     ip = models.CharField(max_length=15, unique=True) #255.255.255.255
     blackholed = models.IntegerField(default=0) #True=1 False=0
 
-    def__unicode__(self):
+    def __unicode__(self):
         return self.ip
