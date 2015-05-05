@@ -90,3 +90,21 @@ def attackers(request):
 
     context_dict['sorted_attackers'] = attacker_object
     return render(request, "topology/attackers.html", context_dict)
+
+def report(request):
+    threats = Threat.objects.all()
+    context_dict = {}
+    #logic for obtaining the top 5 attacker
+    attacks = []
+    for threat in threats:
+        attacks.append(str(threat.name))
+    unique_attacks = list(set(attacks))
+    attack_and_count = []
+    for unique_attack in unique_attacks:
+        count = 0
+        for threat in threats:
+            if unique_attack == threat.attacker:
+                count = count + 1
+        attack_and_count.append((unique_attack, count))
+
+    return render(request, "topology/report.html")
