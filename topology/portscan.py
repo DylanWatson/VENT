@@ -3,7 +3,6 @@ import commands
 
 
 def force_scan(ip):
-    print ('ytou too')
     address = ip
     f = open('scan.txt', 'w')
     pscan = subprocess.Popen(["sudo","nmap","-Pn","localhost"], stdout=subprocess.PIPE)

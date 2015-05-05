@@ -66,7 +66,7 @@ def attacker(request, ip):
     threats = Threat.objects.filter(attacker=ip)
     context_dict['attacker'] = ip
     context_dict['threats'] = threats
-    context_dict['count'] = threats.count()
+    context_dict['count'] = len(threats)
 
     #get blackhole status
     try:
@@ -88,6 +88,11 @@ def admin_actions(request, ip):
 
 def blackhole_add(request, ip):
     context_dict = {}
+    threats = Threat.objects.filter(attacker=ip)
+    context_dict['attacker'] = ip
+    context_dict['threats'] = threats
+
+    bh = 0
     try:
         bh = Blackhole.objects.get_or_create(ip=ip)
         if bh[0].blackholed == 1:
@@ -95,16 +100,12 @@ def blackhole_add(request, ip):
         elif bh[0].blackholed == 0:
             blackhole.add(ip)
             bh[0].blackholed = 1
-            print bh[0].blackholed
             bh[0].date = datetime.now()
-            print bh[0].blackholed
             bh[0].save()
-            print bh
-            context_dict['blackholed'] = bh[0].blackholed  #tell user blackhole was successful
+            context_dict['blackholed'] = 1  #tell user blackhole was successful
     except:
         #blackhole.add(ip)
-        #context_dict['blackholed'] = bh #tell user blackhole was successful
-        pass
+        context_dict['blackholed'] = bh #tell user blackhole was successful
 
     all_holes = Blackhole.objects.all()
     context_dict['all_holes'] = all_holes
@@ -133,52 +134,41 @@ def blackhole_del(request, ip):
     return render(request, "topology/blackhole_result.html", context_dict)
 
 def port_scan(request, ip):
-    scan_object = []
-
-    class Scan(object):
-        port = ""
-        state = ""
-        service = ""
-
-    def make_scan(port, state, service):
-        scan = Scan()
-        scan.port = port
-        scan.state = state
-        scan.service = service
-        scan_object.append(scan)
-
-    ip = ip
     ports = []
     states = []
     services = []
+    have_to_keep_count = []
+    temp_count = 0
+    context_dict = {}
+    context_dict['ip'] = ip
 
-    print ('fuckoff')
-
-    #if '192.168.' in ip:
-    portscan.force_scan(ip)
-    #else:
-    #    portscan.syn_scan(ip)
-
-
+    if '192.168.' in ip:
+        portscan.force_scan(ip)
+    else:
+        portscan.syn_scan(ip)
 
     with open('scan.txt') as f:
         for line in f:
-            scan = Scan()
             parts = line.split()
             try:
                 if '/' in parts[0]:
-                    print (parts[0])
-                    print (parts[1])
-                    print (parts[2])
-                    make_scan(parts[0], parts[1], parts[2])
+                    ports.append(parts[0])
+                    states.append(parts[1])
+                    services.append(parts[2])
+                    temp_count += 1
+                    have_to_keep_count.append(temp_count)
             except:
                 pass
 
-    context_dict = {}
-    context_dict['scans'] = scan_object
-    context_dict['ip'] = ip
+    context_dict['ports'] = ports
+    context_dict['states'] = states
+    context_dict['services'] = services
+    context_dict['count'] = have_to_keep_count
 
     return render(request, "topology/portscan_results.html", context_dict)
+
+def scan(request):
+    scan_object = []
 
 def attackers(request):
     attacker_object = []
@@ -216,8 +206,6 @@ def attackers(request):
     return render(request, "topology/attackers.html", context_dict)
 
 def report(request):
-
-
     attack_object = []
 
     class Attack(object):
@@ -244,6 +232,7 @@ def report(request):
             if unique_attack == threat.name:
                 count = count + 1
         attack_and_count.append((unique_attack, count))
+    attack_and_count = sorted(attack_and_count, key=lambda x: x[1], reverse=True)
 
 
     total = 0
@@ -257,6 +246,34 @@ def report(request):
         make_attack(attack[0], percentage)
 
     context_dict["attacks"] = attack_object
+
+
+    machines = Machine.objects.all()
+    low_level = []
+    medium_level = []
+    high_level = []
+    very_high_level = []
+    for machine in machines:
+        if machine.number_of_threats < 5:
+            low_level.append(machine)
+
+        if machine.number_of_threats < 10 and machine.number_of_threats >= 5:
+            medium_level.append(machine)
+
+        if machine.number_of_threats < 15 and machine.number_of_threats >= 10:
+            high_level.append(machine)
+
+        if machine.number_of_threats >= 15:
+            very_high_level.append(machine)
+
+    context_dict["low_level"] = low_level
+    context_dict["medium_level"] = medium_level
+    context_dict["high_level"] = high_level
+    context_dict["very_high_level"] = very_high_level
+
+    #Code here for displaying the IP addresses that were blacklisted
+    #blacklisted = Blackhole.objects.all()
+    #context_dict["blacklisted"] = blacklisted
 
     return render(request, "topology/report.html", context_dict)
 
