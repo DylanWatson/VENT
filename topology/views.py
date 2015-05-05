@@ -47,7 +47,6 @@ def machine(request, ip):
 
     return render(request, 'topology/machine.html', context_dict)
 
-
 def attacker(request, ip):
     context_dict = {}
 
