@@ -1,10 +1,14 @@
 import subprocess
+import commands
+
 
 def force_scan(ip):
+    print ('ytou too')
     address = ip
     f = open('scan.txt', 'w')
-    pscan = subprocess.Popen(["sudo","nmap","-Pn",address], stdout=subprocess.PIPE)
+    pscan = subprocess.Popen(["sudo","nmap","-Pn","localhost"], stdout=subprocess.PIPE)
     output = pscan.communicate()[0]
+    print (output)
     f.write(output)
     f.close()
 
