@@ -1,27 +1,4 @@
 <!DOCTYPE html>
-
-<!-- Admin Actions -->
-<div style="position: absolute; top: 15px; right: 10px; width: 300px; height: 100px; background-color: #F1F1F1; align: right;">
-  <center>
-    <div style="position: absolute; left: 0; right: 0; top: 10px;">
-      <b>Admin Actions</b>
-    </div>
-    <div style="position: absolute; left: 0; right: 0; top: 30px;">
-      <select id="action" name="action_list">
-        <option value="" selected="selected">Select an action...</option>
-        <option value="0">Port Scan</option>
-        {% if 1 == 1 %}
-        <option value="1">Blackhole IP</option>
-        {% else %}
-        <option value="2">Remove Blackhole</option>
-        {% endif %}
-      </select>
-      <button type="button">Submit</button>
-    </div>
-  </center>
-</div>
-<!-- /Admin Actions -->
-
 {% load static %}
 <html lang="en">
 
@@ -137,6 +114,30 @@
         $("#wrapper").toggleClass("toggled");
     });
     </script>
+
+
+    <!-- Admin Actions -->
+    <div style="position: absolute; top: 10px; right: 10px; width: 300px; height: 100px; background-color: #F1F1F1; align: right;">
+      <center>
+        <div style="position: absolute; left: 0; right: 0; top: 10px;">
+          <b>Admin Actions</b>
+        </div>
+        <div style="position: absolute; left: 0; right: 0; top: 30px;">
+          <select id="action" name="action_list">
+            <option value="" selected="selected">Select an action...</option>
+            <option value="0">Port Scan</option>
+            {% if 1 == 1 %}
+            <option value="1">Blackhole IP</option>
+            {% else %}
+            <option value="2">Remove Blackhole</option>
+            {% endif %}
+          </select>
+          <button type="button">Submit</button>
+        </div>
+      </center>
+    </div>
+    <!-- /Admin Actions -->
+
 
 </body>
 </html>
