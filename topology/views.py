@@ -108,3 +108,7 @@ def report(request):
         attack_and_count.append((unique_attack, count))
 
     return render(request, "topology/report.html")
+
+
+def about(request):
+    return render(request, "topology/about.html")
