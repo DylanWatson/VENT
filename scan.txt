@@ -1,5 +1,5 @@
 
-Starting Nmap 5.21 ( http://nmap.org ) at 2015-05-05 16:47 EST
+Starting Nmap 5.21 ( http://nmap.org ) at 2015-05-05 17:28 EST
 Nmap scan report for localhost (127.0.0.1)
 Host is up (0.0000030s latency).
 Not shown: 991 closed ports
@@ -14,4 +14,4 @@ PORT     STATE SERVICE
 8000/tcp open  http-alt
 9876/tcp open  sd
 
-Nmap done: 1 IP address (1 host up) scanned in 0.10 seconds
+Nmap done: 1 IP address (1 host up) scanned in 0.12 seconds

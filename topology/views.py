@@ -88,11 +88,8 @@ def admin_actions(request, ip):
 
 def blackhole_add(request, ip):
     context_dict = {}
-    threats = Threat.objects.filter(attacker=ip)
-    context_dict['attacker'] = ip
-    context_dict['threats'] = threats
 
-    bh = 0
+
     try:
         bh = Blackhole.objects.get_or_create(ip=ip)
         if bh[0].blackholed == 1:
@@ -104,7 +101,7 @@ def blackhole_add(request, ip):
             bh[0].save()
             context_dict['blackholed'] = 1  #tell user blackhole was successful
     except:
-        #blackhole.add(ip)
+        blackhole.add(ip)
         context_dict['blackholed'] = bh #tell user blackhole was successful
 
     all_holes = Blackhole.objects.all()
@@ -134,36 +131,50 @@ def blackhole_del(request, ip):
     return render(request, "topology/blackhole_result.html", context_dict)
 
 def port_scan(request, ip):
+    scan_object = []
+
+    class Scan(object):
+        port = ""
+        state = ""
+        service = ""
+
+    def make_scan(port, state, service):
+        scan = Scan()
+        scan.port = port
+        scan.state = state
+        scan.service = service
+        scan_object.append(scan)
+
+    ip = ip
     ports = []
     states = []
     services = []
-    have_to_keep_count = []
-    temp_count = 0
-    context_dict = {}
-    context_dict['ip'] = ip
 
-    if '192.168.' in ip:
-        portscan.force_scan(ip)
-    else:
-        portscan.syn_scan(ip)
+    print ('fuckoff')
+
+    #if '192.168.' in ip:
+    portscan.force_scan(ip)
+    #else:
+    #    portscan.syn_scan(ip)
+
+
 
     with open('scan.txt') as f:
         for line in f:
+            scan = Scan()
             parts = line.split()
             try:
                 if '/' in parts[0]:
-                    ports.append(parts[0])
-                    states.append(parts[1])
-                    services.append(parts[2])
-                    temp_count += 1
-                    have_to_keep_count.append(temp_count)
+                    print (parts[0])
+                    print (parts[1])
+                    print (parts[2])
+                    make_scan(parts[0], parts[1], parts[2])
             except:
                 pass
 
-    context_dict['ports'] = ports
-    context_dict['states'] = states
-    context_dict['services'] = services
-    context_dict['count'] = have_to_keep_count
+    context_dict = {}
+    context_dict['scans'] = scan_object
+    context_dict['ip'] = ip
 
     return render(request, "topology/portscan_results.html", context_dict)
 
