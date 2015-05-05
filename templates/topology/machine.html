@@ -38,7 +38,7 @@
     <tbody>
       {% for threat in threats%}
         <tr>
-            <td>{{threat.attacker}}</td>
+            <td><a href='../../attacker/{{threat.attacker}}'>{{threat.attacker}}</a></td>
             <td>{{threat.name}}</td>
             <td>{{threat.date}}</td>
         </tr>

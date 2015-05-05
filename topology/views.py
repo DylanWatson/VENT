@@ -56,5 +56,37 @@ def attacker(request, ip):
     context_dict['threats'] = threats
     return render(request, "topology/attacker.html", context_dict)
 
-def test(request):
-    return render(request, 'topology/test.html')
+def attackers(request):
+    attacker_object = []
+
+    class Attacker(object):
+        ip=""
+        number_of_attacks = 0
+
+    def make_attacker(ip, number_of_attacks):
+        attacker = Attacker()
+        attacker.ip = ip
+        attacker.number_of_attacks = number_of_attacks
+        attacker_object.append(attacker)
+
+
+    threats = Threat.objects.all()
+    context_dict = {}
+    #logic for obtaining the top 5 attacker
+    attackers = []
+    for threat in threats:
+        attackers.append(str(threat.attacker))
+    unique_attackers = list(set(attackers))
+    attacker_and_attacks = []
+    for unique_attacker in unique_attackers:
+        count = 0
+        for threat in threats:
+            if unique_attacker == threat.attacker:
+                count = count + 1
+        attacker_and_attacks.append((unique_attacker, count))
+    attacker_and_attacks = sorted(attacker_and_attacks, key=lambda x: x[1], reverse=True)
+    for attacker in attacker_and_attacks:
+        make_attacker(attacker[0], attacker[1])
+
+    context_dict['sorted_attackers'] = attacker_object
+    return render(request, "topology/attackers.html", context_dict)
