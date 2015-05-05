@@ -2,19 +2,20 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import datetime
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('topology', '0004_auto_20150222_1614'),
+        ('topology', '0009_blackhole'),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='machine',
-            name='slug',
-            field=models.SlugField(default='', unique=True),
-            preserve_default=False,
+            model_name='blackhole',
+            name='date',
+            field=models.DateTimeField(default=datetime.datetime.now, blank=True),
+            preserve_default=True,
         ),
     ]

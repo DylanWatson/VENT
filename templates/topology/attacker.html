@@ -42,6 +42,7 @@
 
 <body>
 
+
     <div id="wrapper">
 
         <!-- Sidebar -->
@@ -69,12 +70,14 @@
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
+
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <h1>Attacker: {{attacker}}</h1>
-                        <h3>Number of attacks: {{count}} </h3>
+                  <div class="col-lg-12">
+                        <h1>Attacker</h1>
+                        <h2>IP Address: {{attacker}}</h2>
+                        <h2>Number of Attacks: {{count}}</h2>
                         <table id="myTable" class="display">
     <thead>
         <tr>
@@ -99,6 +102,32 @@
         </div>
         <!-- /#page-content-wrapper -->
 
+        <!-- Admin Actions -->
+        <div style="position: absolute; top: 10px; right: 13px; width: 300px; height: 100px; background-color: #F1F1F1; align: right;">
+          <center>
+            <div style="position: absolute; left: 0; right: 0; top: 10px;">
+              <b>Admin Actions</b>
+            </div>
+            <div style="position: absolute; left: 0; right: 0; top: 30px;">
+              <form action="{% url 'admin_actions' attacker %}" method="post">
+                {% csrf_token %}
+                <select id="action" name="action_list">
+                  <option value="" selected="selected">Select an action...</option>
+                  <option value="0">Port Scan</option>
+                  {% if blackholed == 0 %}
+                  <option value="1">Blackhole IP</option>
+                  {% else %}
+                  <option value="2">Remove Blackhole</option>
+                  {% endif %}
+                </select>
+                <input type="submit" value="Submit" />
+              </form>
+            </div>
+          </center>
+        </div>
+        <!-- /Admin Actions -->
+
+
     </div>
     <!-- /#wrapper -->
 
@@ -111,5 +140,4 @@
     </script>
 
 </body>
-
 </html>

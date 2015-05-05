@@ -7,12 +7,11 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('topology', '0007_machine_slug'),
+        ('topology', '0010_blackhole_date'),
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='machine',
-            name='slug',
+        migrations.DeleteModel(
+            name='Blackhole',
         ),
     ]
