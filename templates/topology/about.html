@@ -4,18 +4,6 @@
 
 <head>
 
-  {% load staticfiles %}
-<!-- DataTables CSS -->
-<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.7/css/jquery.dataTables.css">
-
-<!-- jQuery -->
-<script type="text/javascript" charset="utf8" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-
-<!-- DataTables -->
-<script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.7/js/jquery.dataTables.js"></script>
-
-<script src="{% static "js/rango-jquery.js" %}"></script>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,16 +41,16 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../../">Topology</a>
+                    <a href="../">Topology</a>
                 </li>
                 <li>
-                    <a href="../../attackers">Attackers</a>
+                    <a href="../attackers/">Attackers</a>
                 </li>
                 <li>
-                    <a href="../../report">Report</a>
+                    <a href="../report/">Report</a>
                 </li>
                 <li>
-                    <a href="../../about">About</a>
+                    <a href="">About</a>
                 </li>
             </ul>
         </div>
@@ -73,25 +61,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Attacker: {{attacker}}</h1>
-                        <table id="myTable" class="display">
-    <thead>
-        <tr>
-            <th>Attacked</th>
-            <th>Type of Attack</th>
-            <th>Date</th>
-        </tr>
-    </thead>
-    <tbody>
-      {% for threat in threats%}
-        <tr>
-            <td><a href='../../machine/{{threat.reciever}}'>{{threat.reciever}}</a></td>
-            <td>{{threat.name}}</td>
-            <td>{{threat.date}}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+                        <h1>About VENT</h1>
+                        <p>VENT or Visualization of Evil Network Traffic is a web applicaiton
+                          for network administrators to be able to quickly look and identify
+                          the status of their network and make quick administrative actions
+                          in order to secure the safety of their network.</p>
                     </div>
                 </div>
             </div>
@@ -117,5 +91,4 @@
 
 </body>
 
->>>>>>> master
 </html>

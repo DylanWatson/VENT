@@ -3,19 +3,6 @@
 <html lang="en">
 
 <head>
-
-  {% load staticfiles %}
-<!-- DataTables CSS -->
-<link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.7/css/jquery.dataTables.css">
-
-<!-- jQuery -->
-<script type="text/javascript" charset="utf8" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-
-<!-- DataTables -->
-<script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.7/js/jquery.dataTables.js"></script>
-
-<script src="{% static "js/rango-jquery.js" %}"></script>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,6 +25,16 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+}
+</style>
+
 </head>
 
 <body>
@@ -53,16 +50,16 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../../">Topology</a>
+                    <a href="../">Topology</a>
                 </li>
                 <li>
-                    <a href="../../attackers">Attackers</a>
+                    <a href="../attackers">Attackers</a>
                 </li>
                 <li>
-                    <a href="../../report">Report</a>
+                    <a href="../report">Report</a>
                 </li>
                 <li>
-                    <a href="../../about">About</a>
+                    <a href="../about">About</a>
                 </li>
             </ul>
         </div>
@@ -73,25 +70,23 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1>Attacker: {{attacker}}</h1>
-                        <table id="myTable" class="display">
-    <thead>
-        <tr>
-            <th>Attacked</th>
-            <th>Type of Attack</th>
-            <th>Date</th>
-        </tr>
-    </thead>
-    <tbody>
-      {% for threat in threats%}
-        <tr>
-            <td><a href='../../machine/{{threat.reciever}}'>{{threat.reciever}}</a></td>
-            <td>{{threat.name}}</td>
-            <td>{{threat.date}}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+                        <h1>Analysis of Network</h1>
+                        <br>
+                        <h3>Attacks</h3>
+                        <table class="display">
+                              <tr>
+                                  <th>Attack Type</th>
+                                  <th>Percentage</th>
+                              </tr>
+                            {% for attack in attacks %}
+                              <tr>
+                                  <td>{{attack.attack_type}}</td>
+                                  <td>{{attack.percentage}}%</td>
+                              </tr>
+                              {% endfor %}
+                       </table>
+
+
                     </div>
                 </div>
             </div>
@@ -117,5 +112,4 @@
 
 </body>
 
->>>>>>> master
 </html>
