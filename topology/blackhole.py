@@ -1,8 +1,8 @@
 import pxssh
 
-def add():
+def add(ip):
     #get ip address, username, and password for router
-    bh = 'ip route add blackhole 192.168.2.10'
+    bh = 'ip route add blackhole ' + ip
     h = '192.168.2.1'
     u = 'worthless_hack'
     p = 'FjRPZ0LO!'
@@ -12,9 +12,9 @@ def add():
     s.sendline(bh)
     s.logout()
 
-def delete():
+def delete(ip):
     #get ip address, username, and password for router
-    bh = 'ip route del blackhole 192.168.2.10'
+    bh = 'ip route del blackhole ' + ip
     h = '192.168.2.1'
     u = 'worthless_hack'
     p = 'FjRPZ0LO!'

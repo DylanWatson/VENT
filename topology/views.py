@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from topology.models import Machine, Threat, Blackhole
 from operator import itemgetter
 import blackhole
+from datetime import datetime
+import portscan
 
 def index(request):
     context_dict = {}
@@ -45,6 +47,13 @@ def machine(request, ip):
         if machine.number_of_threats >= 15:
             context_dict["threat_level"] = "Very High"
 
+
+        #get blackhole status
+        try:
+            context_dict['blackholed'] = Blackhole.objects.get(ip=ip).blackholed
+        except:
+            context_dict['blackholed'] = 0
+
     except:
         pass
 
@@ -57,7 +66,25 @@ def attacker(request, ip):
     threats = Threat.objects.filter(attacker=ip)
     context_dict['attacker'] = ip
     context_dict['threats'] = threats
+    context_dict['count'] = threats.count()
+
+    #get blackhole status
+    try:
+        context_dict['blackholed'] = Blackhole.objects.get(ip=ip).blackholed
+    except:
+        context_dict['blackholed'] = 0
+
     return render(request, "topology/attacker.html", context_dict)
+
+def admin_actions(request, ip):
+    context_dict = {}
+    action = request.POST['action_list']
+    if action == '0':
+        return port_scan(request, ip)
+    elif action == '1':
+        return blackhole_add(request, ip)
+    elif action == '2':
+        return blackhole_del(request, ip)
 
 def blackhole_add(request, ip):
     context_dict = {}
@@ -65,43 +92,83 @@ def blackhole_add(request, ip):
     context_dict['attacker'] = ip
     context_dict['threats'] = threats
 
+    bh = 0
     try:
-        bh = Blackhole.objects.get(ip=ip).blackholed
-        if bh == 1:
+        bh = Blackhole.objects.get_or_create(ip=ip)
+        if bh[0].blackholed == 1:
             context_dict['blackholed'] = 2  #normally 1 or 0 for T or F, 2 says to tell the user it was already T
-        elif bh == 0:
-            blackhole.add()
+        elif bh[0].blackholed == 0:
+            blackhole.add(ip)
+            bh[0].blackholed = 1
+            bh[0].date = datetime.now()
+            bh[0].save()
             context_dict['blackholed'] = 1  #tell user blackhole was successful
     except:
-        blackhole.add()
-        context_dict['blackholed'] = 1 #tell user blackhole was successful
+        #blackhole.add(ip)
+        context_dict['blackholed'] = bh #tell user blackhole was successful
 
+    all_holes = Blackhole.objects.all()
+    context_dict['all_holes'] = all_holes
     return render(request, "topology/blackhole_result.html", context_dict)
 
 def blackhole_del(request, ip):
     context_dict = {}
     threats = Threat.objects.filter(attacker=ip)
     context_dict['attacker'] = ip
-    context_dict['threats'] = threats
 
     try:
-        bh = Blackhole.objects.get(ip=ip).blackholed
-        if bh == 1:
-            blackhole.delete()
+        bh = Blackhole.objects.get_or_create(ip=ip)
+        if bh[0].blackholed == 1:
+            blackhole.delete(ip)
+            bh[0].blackholed = 0
+            bh[0].date = datetime.now()
+            bh[0].save()
             context_dict['blackholed'] = 0  #tell user blackhole removal was successful
-        elif bh == 0:
+        elif bh[0].blackholed == 0:
             context_dict['blackholed'] = 3  #normally 1 or 0 for T or F, 3 says to tell the user it was already F
     except:
-        blackhole.delete()
-        context_dict['blackholed'] = 0
+        context_dict['blackholed'] = 4
 
+    all_holes = Blackhole.objects.all()
+    context_dict['all_holes'] = all_holes
     return render(request, "topology/blackhole_result.html", context_dict)
 
 def port_scan(request, ip):
+    ports = []
+    states = []
+    services = []
+    have_to_keep_count = []
+    temp_count = 0
     context_dict = {}
-    #will add another parameter to determine the type of port scanning
-    #do port scan stuff
+    context_dict['ip'] = ip
+
+    if '192.168.' in ip:
+        portscan.force_scan(ip)
+    else:
+        portscan.syn_scan(ip)
+
+    with open('scan.txt') as f:
+        for line in f:
+            parts = line.split()
+            try:
+                if '/' in parts[0]:
+                    ports.append(parts[0])
+                    states.append(parts[1])
+                    services.append(parts[2])
+                    temp_count += 1
+                    have_to_keep_count.append(temp_count)
+            except:
+                pass
+
+    context_dict['ports'] = ports
+    context_dict['states'] = states
+    context_dict['services'] = services
+    context_dict['count'] = have_to_keep_count
+
     return render(request, "topology/portscan_results.html", context_dict)
+
+def scan(request):
+    scan_object = []
 
 def attackers(request):
     attacker_object = []
