@@ -122,6 +122,7 @@ def report(request):
             if unique_attack == threat.name:
                 count = count + 1
         attack_and_count.append((unique_attack, count))
+    attack_and_count = sorted(attack_and_count, key=lambda x: x[1], reverse=True)
 
 
     total = 0
@@ -159,6 +160,10 @@ def report(request):
     context_dict["medium_level"] = medium_level
     context_dict["high_level"] = high_level
     context_dict["very_high_level"] = very_high_level
+
+    #Code here for displaying the IP addresses that were blacklisted
+    #blacklisted = Blackhole.objects.all()
+    #context_dict["blacklisted"] = blacklisted
 
     return render(request, "topology/report.html", context_dict)
 

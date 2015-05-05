@@ -79,7 +79,7 @@
                         <h3>Number of Threats: {{machine_ip.number_of_threats}} </h3>
    <h3>Top 5 Attackers</h3>
    {% for machine in top5 %}
-   {{ machine }}
+   <a href='../../attacker/{{machine}}'>{{ machine }}</a>
  </br>
    {% endfor %}
  </br>

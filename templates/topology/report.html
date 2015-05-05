@@ -89,8 +89,8 @@ th, td {
                        <br>
 
 
-                       <h3><center>Very High Danger<center></h3>
-                         <table class="display" width=100%>
+                       <h3><center>Very High Danger</center></h3>
+                         <table class="display" width=100% align="center">
                                <tr>
                                    <th>Machine IP</th>
                                    <th>Number of Attacks</th>
@@ -103,8 +103,8 @@ th, td {
                                {% endfor %}
                         </table>
 
-                        <h3><center>High Danger<center></h3>
-                          <table class="display" width=100%>
+                        <h3><center>High Danger</center></h3>
+                          <table class="display" width=100% align="center">
                                 <tr>
                                     <th>Machine IP</th>
                                     <th>Number of Attacks</th>
@@ -117,8 +117,8 @@ th, td {
                                 {% endfor %}
                          </table>
 
-                         <h3><center>Medium Danger<center></h3>
-                           <table class="display" width=100%>
+                         <h3><center>Medium Danger</center></h3>
+                           <table class="display" width=100% align="center">
                                  <tr>
                                      <th>Machine IP</th>
                                      <th>Number of Attacks</th>
@@ -131,8 +131,8 @@ th, td {
                                  {% endfor %}
                           </table>
 
-                          <h3><center>Low Danger<center></h3>
-                            <table class="display" width=100%>
+                          <h3><center>Low Danger</center></h3>
+                            <table class="display" width=100% align="center">
                                   <tr>
                                       <th>Machine IP</th>
                                       <th>Number of Attacks</th>
@@ -144,6 +144,20 @@ th, td {
                                   </tr>
                                   {% endfor %}
                            </table>
+
+
+                           <h3><center>Blacklisted<center></h3>
+                          <!--   <table class="display" width=100%>
+                                   <tr>
+                                       <th>IP Address</th>
+                                   </tr>
+                                 {% for machine in low_level %}
+                                   <tr>
+                                       <td>{{machine.ip}}</td>
+                                       <td>{{machine.number_of_threats}}</td>
+                                   </tr>
+                                   {% endfor %}
+                            </table> -->
 
 
 
