@@ -51,6 +51,14 @@ def machine(request, ip):
 
     return render(request, 'topology/machine.html', context_dict)
 
+def attacker(request, ip):
+    context_dict = {}
+
+    threats = Threat.objects.filter(attacker=ip)
+    context_dict['attacker'] = ip
+    context_dict['threats'] = threats
+    return render(request, "topology/attacker.html", context_dict)
+
 def blackhole_add(request, ip):
     context_dict = {}
     threats = Threat.objects.filter(attacker=ip)
