@@ -57,6 +57,7 @@ def attacker(request, ip):
     threats = Threat.objects.filter(attacker=ip)
     context_dict['attacker'] = ip
     context_dict['threats'] = threats
+    context_dict['count'] = threats.count()
     return render(request, "topology/attacker.html", context_dict)
 
 def blackhole_add(request, ip):
