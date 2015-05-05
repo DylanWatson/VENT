@@ -33,13 +33,18 @@ def machine(request, ip):
             attacker_and_attacks.append((unique_attacker, count))
         attacker_and_attacks = sorted(attacker_and_attacks, key=lambda x: x[1], reverse=True)
         context_dict['top5'] = [x[0] for x in attacker_and_attacks[:5]]
-        #Sort by number of threats
-        #Save top 5 in context_dict so it can be accessed by machine.html
-        #Maybe make cool visualizations? :)
-        #Visualization of types of attacks :D
 
+        if machine.number_of_threats < 5:
+            context_dict["threat_level"] = "Low"
 
+        if machine.number_of_threats < 10 and machine.number_of_threats >= 5:
+            context_dict["threat_level"] = "Medium"
 
+        if machine.number_of_threats < 15 and machine.number_of_threats >= 10:
+            context_dict["threat_level"] = "High"
+
+        if machine.number_of_threats >= 15:
+            context_dict["threat_level"] = "Very High"
 
     except:
         pass
@@ -91,6 +96,20 @@ def attackers(request):
     return render(request, "topology/attackers.html", context_dict)
 
 def report(request):
+
+
+    attack_object = []
+
+    class Attack(object):
+        attack_type=""
+        percentage = float(0.0)
+
+    def make_attack(attack_type, percentage):
+        attack = Attack()
+        attack.attack_type = attack_type
+        attack.percentage = percentage
+        attack_object.append(attack)
+
     threats = Threat.objects.all()
     context_dict = {}
     #logic for obtaining the top 5 attacker
@@ -102,11 +121,24 @@ def report(request):
     for unique_attack in unique_attacks:
         count = 0
         for threat in threats:
-            if unique_attack == threat.attacker:
+            if unique_attack == threat.name:
                 count = count + 1
         attack_and_count.append((unique_attack, count))
 
-    return render(request, "topology/report.html")
+
+    total = 0
+    labels = []
+    percentages = []
+    for attack in attack_and_count:
+        total = total + attack[1]
+
+    for attack in attack_and_count:
+        percentage =  float("{0:.2f}".format(float((attack[1]))/float(total)*100.0))
+        make_attack(attack[0], percentage)
+
+    context_dict["attacks"] = attack_object
+
+    return render(request, "topology/report.html", context_dict)
 
 
 def about(request):
