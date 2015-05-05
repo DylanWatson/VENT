@@ -96,8 +96,6 @@ def attackers(request):
     return render(request, "topology/attackers.html", context_dict)
 
 def report(request):
-
-
     attack_object = []
 
     class Attack(object):
@@ -137,6 +135,30 @@ def report(request):
         make_attack(attack[0], percentage)
 
     context_dict["attacks"] = attack_object
+
+
+    machines = Machine.objects.all()
+    low_level = []
+    medium_level = []
+    high_level = []
+    very_high_level = []
+    for machine in machines:
+        if machine.number_of_threats < 5:
+            low_level.append(machine)
+
+        if machine.number_of_threats < 10 and machine.number_of_threats >= 5:
+            medium_level.append(machine)
+
+        if machine.number_of_threats < 15 and machine.number_of_threats >= 10:
+            high_level.append(machine)
+
+        if machine.number_of_threats >= 15:
+            very_high_level.append(machine)
+
+    context_dict["low_level"] = low_level
+    context_dict["medium_level"] = medium_level
+    context_dict["high_level"] = high_level
+    context_dict["very_high_level"] = very_high_level
 
     return render(request, "topology/report.html", context_dict)
 

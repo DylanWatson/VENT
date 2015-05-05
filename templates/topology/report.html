@@ -72,8 +72,8 @@ th, td {
                     <div class="col-lg-12">
                         <h1>Analysis of Network</h1>
                         <br>
-                        <h3>Attacks</h3>
-                        <table class="display">
+                        <h3><center>Attacks</center></h3>
+                        <table class="display" width=100%>
                               <tr>
                                   <th>Attack Type</th>
                                   <th>Percentage</th>
@@ -86,6 +86,68 @@ th, td {
                               {% endfor %}
                        </table>
 
+                       <br>
+
+
+                       <h3><center>Very High Danger<center></h3>
+                         <table class="display" width=100%>
+                               <tr>
+                                   <th>Machine IP</th>
+                                   <th>Number of Attacks</th>
+                               </tr>
+                             {% for machine in very_high_level %}
+                               <tr>
+                                   <td>{{machine.ip}}</td>
+                                   <td>{{machine.number_of_threats}}</td>
+                               </tr>
+                               {% endfor %}
+                        </table>
+
+                        <h3><center>High Danger<center></h3>
+                          <table class="display" width=100%>
+                                <tr>
+                                    <th>Machine IP</th>
+                                    <th>Number of Attacks</th>
+                                </tr>
+                              {% for machine in high_level %}
+                                <tr>
+                                    <td>{{machine.ip}}</td>
+                                    <td>{{machine.number_of_threats}}</td>
+                                </tr>
+                                {% endfor %}
+                         </table>
+
+                         <h3><center>Medium Danger<center></h3>
+                           <table class="display" width=100%>
+                                 <tr>
+                                     <th>Machine IP</th>
+                                     <th>Number of Attacks</th>
+                                 </tr>
+                               {% for machine in medium_level %}
+                                 <tr>
+                                     <td>{{machine.ip}}</td>
+                                     <td>{{machine.number_of_threats}}</td>
+                                 </tr>
+                                 {% endfor %}
+                          </table>
+
+                          <h3><center>Low Danger<center></h3>
+                            <table class="display" width=100%>
+                                  <tr>
+                                      <th>Machine IP</th>
+                                      <th>Number of Attacks</th>
+                                  </tr>
+                                {% for machine in low_level %}
+                                  <tr>
+                                      <td>{{machine.ip}}</td>
+                                      <td>{{machine.number_of_threats}}</td>
+                                  </tr>
+                                  {% endfor %}
+                           </table>
+
+
+
+
 
                     </div>
                 </div>
@@ -97,10 +159,10 @@ th, td {
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="{% static 'js/jquery.js' %}"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 
     <!-- Menu Toggle Script -->
     <script>

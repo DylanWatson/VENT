@@ -62,10 +62,40 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1>About VENT</h1>
-                        <p>VENT or Visualization of Evil Network Traffic is a web applicaiton
+                        <p>VENT or Visualization of Evil Network Traffic is a web application
                           for network administrators to be able to quickly look and identify
                           the status of their network and make quick administrative actions
                           in order to secure the safety of their network.</p>
+                        <p>VENT starts off by creating a visualization of your network
+                          topology by scanning it using nmap and assigning each machine
+                          a colored box. VENT then integrates with your IDS so that
+                          it can visualize your "evil" traffic using color-coating.</p>
+                        <p>Each machine's color will start at green and as the machine
+                          recieves more attacks, the color will transition to yellow,
+                          to orange, and finally to red to indicate the danger of the
+                          machine. </p>
+                        <p>By visualizing threats this way, network administrators won't
+                          have to chase through logs trying to identify which machines are
+                          under attack. </p>
+                        <p>Finally VENT is awesome because it saves you a lot of time.
+                          Ok, so you found out who the 1337 H4X0R is attacking your machine.
+                          Now you have to go through and set up a bunch of fancy rules in
+                          the router so they can't bother you.  With VENT, it allows you
+                          to blacklist IP addresses at the click of a button, saving you
+                          even more time. </p>
+                        <p>Not only can you black-list IP addresses, but you can also
+                          perform reconnaissance on machines on your network to ensure
+                          they didn't do anything stupid like opening unsecure services.
+                          You can port scan any machine on your network and get a list
+                          of the open ports to ensure  services are running that shoudn't
+                          be.  </p>
+                        <p>Want another reason VENT is awesome?  We generate consise reports
+                          automatically based what is going on your network.  Something great
+                          the boss can understand.</p>
+                        <h3>Currently Supporting</h3>
+                        <p>Currently, Bro is the only IDS supported.  In addition, it is only
+                          configured to support a virtual router.  Get off my back, we are on
+                          it! </p>
                     </div>
                 </div>
             </div>
