@@ -80,7 +80,7 @@
                           <tbody>
                             {% for attacker in sorted_attackers%}
                               <tr>
-                                  <td><a href='../../attacker/{{attacker.ip}}'>{{attacker.ip}}</a></td>
+                                  <td><a href='../attacker/{{attacker.ip}}'>{{attacker.ip}}</a></td>
                                   <td>{{attacker.number_of_attacks}}</td>
                               </tr>
                               {% endfor %}
